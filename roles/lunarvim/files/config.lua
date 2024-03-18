@@ -3,6 +3,7 @@ lvim.plugins = {
     "AckslD/swenv.nvim",
     "stevearc/dressing.nvim",
     "mfussenegger/nvim-dap-python",
+    "nvim-neotest/nvim-nio",
     "nvim-neotest/neotest",
     "nvim-neotest/neotest-python",
     "ThePrimeagen/harpoon",

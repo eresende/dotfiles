@@ -1,0 +1,24 @@
+default_roles:
+  - system
+  - bash
+  - docker
+  - git
+  - go
+  - helm
+  - k8s
+  - neofetch
+  - neovim
+  - python
+  - rust
+  - ssh
+  - sshfs
+  - terraform
+  - tmux
+  - zsh
+
+git_user_name: "Eusebio Resende"
+#git_user_email: !vault |
+
+k8s:
+  repo_version: "v1.28"
+

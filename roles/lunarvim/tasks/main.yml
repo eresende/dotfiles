@@ -1,0 +1,25 @@
+---
+
+- name: "Lunarvim | Ensure user bin directory exists"
+  ansible.buildin.file:
+    dest: "{{ ansible_user_dir }}/.local/bin"
+    state: directory
+    mode: "0755"
+
+- name: "Lunarvim | Ensure lvim config directory exists"
+  ansible.builtin.file:
+    dest: "{{ ansible_user_dir }}/.config/lvim"
+    state: directory
+    mode: "0755"
+
+- name: "Lunarvim | Copy executable"
+  ansible.builtin.copy:
+    src: "lvim"
+    dest: "{{ ansible_user_dir }}/.local/bin"
+    mode: "0755"
+
+- name: "Lunarvim | Copy config files"
+  ansible.builtin.copy:
+    src: "config.lua"
+    dest: "{{ ansible_user_dir }}/.config/lvim"
+    mode: "0644"

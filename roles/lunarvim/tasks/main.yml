@@ -1,7 +1,7 @@
 ---
 
 - name: "Lunarvim | Ensure user bin directory exists"
-  ansible.buildin.file:
+  ansible.builtin.file:
     dest: "{{ ansible_user_dir }}/.local/bin"
     state: directory
     mode: "0755"

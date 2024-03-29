@@ -10,7 +10,7 @@
     - Cleanup lunarvim install script
 
 - name: "Lunarvim | Install Lunarvim"
-  ansible.builtin.command: bash /tmp/install.sh -y
+  ansible.builtin.command: bash /tmp/install.sh --no-install-dependencies
 
 - name: "Lunarvim | Ensure lvim config directory exists"
   ansible.builtin.file:

@@ -1,0 +1,38 @@
+---
+
+- name: "Zsh | Checking if it's already installed."
+  ansible.builtin.stat:
+    path: "{{ ansible_user_dir }}/.oh-my-zsh"
+  register: zsh_install_dir
+
+- name: "Zsh | {{ ansible_distribution }} | Dependencies"
+  ansible.builtin.apt:
+    name:
+      - curl
+      - wget
+      - git
+      - zsh
+    state: present
+  become: true
+
+- name: "Zsh | {{ ansible_distribution }} | Install Zsh"
+  ansible.builtin.apt:
+    name:
+      - zsh
+
+- block:
+  - name: "Zsh | {{ ansible_distribution }} | Download oh-my-zsh install script"
+    ansible.builtin.get_url:
+      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+      dest: /tmp/ohmyzsh-install.sh
+
+  - name: "Zsh | {{ ansible_distribution }} | Install oh-my-zsh"
+    ansible.builtin.shell:
+      cmd: sh /tmp/ohmyzsh-install.sh --unattended
+  - name: "Zsh | {{ ansible_distribution }} | Set default shell to Zsh"
+    ansible.builtin.user:
+      name: "{{ ansible_user_id }}"
+      shell: /usr/bin/zsh
+    become: true
+
+  when: not zsh_install_dir.stat.exists

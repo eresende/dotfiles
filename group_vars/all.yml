@@ -1,12 +1,11 @@
 default_roles:
   - system
-  # - bash
   #- docker
   #- git
   #- go
   # - helm
   #- k8s
-  #- neofetch
+  - neofetch
   - neovim
   - lunarvim
   #- python
@@ -15,7 +14,7 @@ default_roles:
   #- sshfs
   #- terraform
   - tmux
-  #- zsh
+  - zsh
 
 git_user_name: "Eusebio Resende"
 

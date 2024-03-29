@@ -1,0 +1,23 @@
+---
+- name: "Zsh | Checking for Distribution Config: {{ ansible_distribution }}"
+  ansible.builtin.stat:
+    path: "{{ role_path }}/tasks/{{ ansible_distribution }}.yml"
+  register: zsh_distribution_config
+
+- name: "Zsh | Run Tasks: {{ ansible_distribution }}"
+  ansible.builtin.include_tasks: "{{ ansible_distribution }}.yml"
+  when: zsh_distribution_config.stat.exists
+
+- name: "Zsh | Install custom config files"
+  ansible.builtin.copy:
+    src: "files/{{ item }}"
+    dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/{{ item }}"
+  loop:
+    - p10k.zsh
+    - alias.zsh
+
+- name: "Zsh | Install config files"
+  ansible.builtin.copy:
+    src: files/.zshrc
+    dest: "{{ ansible_user_dir}}/"
+

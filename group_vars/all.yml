@@ -14,7 +14,7 @@ default_roles:
   #- ssh
   #- sshfs
   #- terraform
-  # - tmux
+  - tmux
   #- zsh
 
 git_user_name: "Eusebio Resende"

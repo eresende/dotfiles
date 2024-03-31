@@ -12,6 +12,8 @@
       - wget
       - git
       - zsh
+      - zsh-syntax-highlighting
+      - zsh-autosuggestions
     state: present
   become: true
 

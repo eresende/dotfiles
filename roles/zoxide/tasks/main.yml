@@ -1,0 +1,23 @@
+---
+
+- name: "Zoxide | Checking if it's already installed."
+  ansible.builtin.command: which zoxide
+  register: zoxide_check
+  ignore_errors: yes
+  failed_when: zoxide_check.rc != 0
+
+- block:
+  - name: "Zoxide | Download install script"
+    ansible.builtin.get_url:
+      url: https://raw.githubusercontent.com/ajeetdsouza/zoxide/v0.9.4/install.sh 
+      dest: /tmp/zoxide-install.sh
+
+  - name: "Zoxide | Install zoxide"
+    ansible.builtin.shell:
+      cmd: sh /tmp/zoxide-install.sh
+  when: zoxide_check.rc != 0
+
+- name: "Zoxide | Add to zsh startup scripts"
+  ansible.builtin.copy:
+    src: "files/zoxide.zsh"
+    dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/zoxide.zsh"

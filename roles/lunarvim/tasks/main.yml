@@ -1,16 +1,24 @@
 ---
 
-- name: "Lunarvim | Downloading Lunarvim install script"
-  ansible.builtin.get_url:
-    url: "https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh"
-    dest: /tmp/
-    mode: "0644"
-    force: true
-  notify:
-    - Cleanup lunarvim install script
+- name: "Lunarvim | Checking if it's already installed."
+  ansible.builtin.command: which lvim
+  register: lvim_check
+  ignore_errors: yes
+  failed_when: lvim_check.rc != 0
 
-- name: "Lunarvim | Install Lunarvim"
-  ansible.builtin.command: bash /tmp/install.sh --install-dependencies
+- block:
+  - name: "Lunarvim | Downloading Lunarvim install script"
+    ansible.builtin.get_url:
+      url: "https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh"
+      dest: /tmp/
+      mode: "0644"
+      force: true
+    notify:
+      - Cleanup lunarvim install script
+
+  - name: "Lunarvim | Install Lunarvim"
+    ansible.builtin.command: bash /tmp/install.sh --install-dependencies
+  when: lvim_check.rc != 0
 
 - name: "Lunarvim | Ensure lvim config directory exists"
   ansible.builtin.file:

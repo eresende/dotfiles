@@ -1,12 +1,13 @@
 default_roles:
   - system
   #- docker
-  #- git
+  - git
   #- go
   # - helm
   #- k8s
   - neofetch
   - neovim
+  # - npm
   - lunarvim
   #- python
   #- rust

@@ -1,0 +1,22 @@
+---
+- name: "Nvn | Download installer"
+  ansible.builtin.get_url:
+    url: "https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh"
+    dest: /tmp/
+    mode: "0644"
+    force: true
+  notify:
+    - Cleanup Nvm install script
+
+- name: "Nvm | Run install script"
+  ansible.builtin.command: bash /tmp/install.sh
+  environment:
+    PROFILE: /dev/null
+
+- name: "Nvm | Install node using NVM"
+  ansible.builtin.shell: |
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    nvm install --lts
+  environment:
+    NVM_DIR: "{{ ansible_user_dir }}/.nvm"
+

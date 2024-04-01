@@ -150,7 +150,7 @@ source $ZSH/oh-my-zsh.sh
 # eval "$(pyenv init -)"
 
 # Set GO installation path
-# export GOPATH=/u/users/ere3/go
+export GOPATH=/usr/local/go
 # Add GO's binary directory to PATH
-# export PATH=$GOPATH/bin:$PATH
+export PATH=$GOPATH/bin:$PATH
 

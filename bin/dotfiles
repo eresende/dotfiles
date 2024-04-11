@@ -119,17 +119,17 @@ function rhel_setup() {
   if ! [ -x "$(command -v ansible)" ]; then
     _task "Installing Ansible"
     _cmd "sudo dnf update -y"
-    _cmd "sudo dnf install -y ansible"
-    _cmd "sudo dnf install -y python3-argcomplete"
+    _cmd "sudo dnf install -y ansible-core"
+    _cmd "sudo dnf install -y python3.11-argcomplete"
   fi
-  if ! rpm -q python39 >/dev/null 2>&1; then
-    _task "Installing Python3.8"
-    _cmd "sudo dnf install -y python39"
-    _cmd "sudo update-alternatives --set python3 /usr/bin/python3.9"
+  if ! rpm -q python3.11 >/dev/null 2>&1; then
+    _task "Installing Python3.11"
+    _cmd "sudo dnf install -y python3.11"
+    _cmd "sudo update-alternatives --set python3 /usr/bin/python3.11"
   fi
-  if ! rpm -q python39-pip >/dev/null 2>&1; then
+  if ! rpm -q python3.11-pip >/dev/null 2>&1; then
     _task "Installing Python3 Pip"
-    _cmd "sudo dnf install -y python39-pip"
+    _cmd "sudo dnf install -y python3.11-pip"
   fi
   if ! pip3 list | grep watchdog >/dev/null 2>&1; then
     _task "Installing Python3 Watchdog"
@@ -162,7 +162,7 @@ case $ID in
   ubuntu)
     ubuntu_setup
     ;;
-  arch)
+  rhel)
     rhel_setup
     ;;
   *)

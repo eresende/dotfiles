@@ -38,6 +38,7 @@
         src: /tmp/win32yank.zip
         dest: /tmp
         mode: "0755"
+        remote_src: true
 
     - name: System | Copy win32yank into path
       ansible.builtin.copy:

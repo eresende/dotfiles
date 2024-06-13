@@ -167,9 +167,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# if neofetch exists, run it
+# if fastfetch exists, run it
 if [[ -z "$TMUX" ]]; then
-  if command -v neofetch &> /dev/null; then neofetch; fi
+  if command -v fastfetch &> /dev/null; then fastfetch; fi
 fi
 #toilet "TechDufus" -F border:gay -f emboss2
 

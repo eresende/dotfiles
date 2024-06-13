@@ -1,0 +1,14 @@
+---
+
+- block:
+  - name: "fastfetch | Ubuntu | Add fastfetch repository"
+    ansible.builtin.apt_repository:
+      repo: ppa:zhangsongcui3371/fastfetch
+      state: present
+
+  - name: "fastfetch | Ubuntu | Install fastfetch"
+    ansible.builtin.apt:
+      name: fastfetch
+      state: present
+      update_cache: true
+  become: true

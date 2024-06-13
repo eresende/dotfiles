@@ -5,7 +5,7 @@ default_roles:
   - go
   # - helm
   #- k8s
-  - neofetch
+  - fastfetch
   - neovim
   - npm
   - lunarvim

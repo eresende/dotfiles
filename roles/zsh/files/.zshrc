@@ -102,4 +102,4 @@ source $ZSH/oh-my-zsh.sh
 alias vim=lvim
 alias beak="/home/eresende/projects/pterodactyl/dev/beak" 
 
-neofetch
+fastfetch
